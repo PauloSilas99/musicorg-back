@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: musicorg-backend
+    runtime: php
+    plan: starter
+    region: oregon
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: pgsql
+      # Configure outras variáveis de ambiente no painel da Render:
+      # - APP_KEY
+      # - APP_URL
+      # - DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD (ou DB_URL)
+      # - FRONTEND_URL
+
