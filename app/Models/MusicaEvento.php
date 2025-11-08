@@ -19,6 +19,7 @@ class MusicaEvento extends Model
         'titulo_musica',
         'artista_ou_tom',
         'ordem',
+        'link_musica',
     ];
 
     public function evento(): BelongsTo

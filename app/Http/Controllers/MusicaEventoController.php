@@ -42,6 +42,7 @@ class MusicaEventoController extends BaseController
             'titulo_musica' => 'required|string|max:255',
             'artista_ou_tom' => 'nullable|string|max:100',
             'ordem' => 'nullable|integer|min:0',
+            'link_musica' => 'nullable|url|max:2048',
         ]);
 
         $musica = MusicaEvento::create([
@@ -49,6 +50,7 @@ class MusicaEventoController extends BaseController
             'titulo_musica' => $validated['titulo_musica'],
             'artista_ou_tom' => $validated['artista_ou_tom'] ?? null,
             'ordem' => $validated['ordem'] ?? 0,
+            'link_musica' => $validated['link_musica'] ?? null,
         ]);
 
         return response()->json([
@@ -90,6 +92,7 @@ class MusicaEventoController extends BaseController
             'titulo_musica' => 'sometimes|required|string|max:255',
             'artista_ou_tom' => 'nullable|string|max:100',
             'ordem' => 'sometimes|integer|min:0',
+            'link_musica' => 'sometimes|nullable|url|max:2048',
         ]);
 
         $musica->update($validated);
