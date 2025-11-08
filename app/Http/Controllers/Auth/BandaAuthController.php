@@ -19,12 +19,14 @@ class BandaAuthController extends Controller
             'nome' => 'required|string|max:50',
             'email' => 'required|string|email|max:100|unique:bandas,email',
             'password' => 'required|string|min:8|confirmed',
+            'plan' => 'nullable|string|in:gratuito,pro',
         ]);
 
         $banda = Banda::create([
             'nome' => $validated['nome'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
+            'plan' => $validated['plan'] ?? 'gratuito',
         ]);
 
         $token = $banda->createToken('auth-token')->plainTextToken;

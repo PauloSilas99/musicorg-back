@@ -76,6 +76,12 @@ class EventoController extends BaseController
 
         $banda = $request->user();
 
+        if ($banda->plan === 'gratuito' && $banda->eventos()->count() >= 3) {
+            throw ValidationException::withMessages([
+                'plan' => ['O plano gratuito permite cadastrar no máximo 3 eventos. Atualize seu plano para continuar.'],
+            ]);
+        }
+
         $evento = Evento::create([
             'band_id' => $banda->id,
             'titulo' => $validated['titulo'],

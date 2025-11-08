@@ -18,6 +18,7 @@ class Banda extends Authenticatable
         'nome',
         'email',
         'password',
+        'plan',
     ];
 
     protected $hidden = [
